@@ -16,12 +16,18 @@ class TeamSerializer(serializers.ModelSerializer):
 
 
 class NewGameSerializer(serializers.ModelSerializer):
+    player1 = TeamSerializer()
+    player2 = TeamSerializer()
+    liga = LigaSerializer()
     class Meta:
         model = NewGame
-        fields = '__all__'
+        fields = ('id','liga','player1','player2', 'date')
 
 
 class OldGameSerializer(serializers.ModelSerializer):
+    player1 = TeamSerializer()
+    player2 = TeamSerializer()
+    liga = LigaSerializer()
     class Meta:
         model = OldGame
-        fields = '__all__'
+        fields = ('id','liga','player1','player2', 'natija', 'date')
