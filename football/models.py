@@ -23,8 +23,8 @@ class Team(models.Model):
 
 class NewGame(models.Model):
     liga = models.ForeignKey(Liga, on_delete=models.CASCADE)
-    player1 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='new_games_player1')
-    player2 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='new_games_player2')
+    player1 = models.ForeignKey(Team.name, on_delete=models.CASCADE, related_name='new_games_player1')
+    player2 = models.ForeignKey(Team.name, on_delete=models.CASCADE, related_name='new_games_player2')
     date = models.DateTimeField()
 
     def __str__(self):
@@ -33,8 +33,8 @@ class NewGame(models.Model):
 
 class OldGame(models.Model):
     liga = models.ForeignKey(Liga, on_delete=models.CASCADE)
-    player1 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='old_games_player1')
-    player2 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='old_games_player2')
+    player1 = models.ForeignKey(Team.name, on_delete=models.CASCADE, related_name='old_games_player1')
+    player2 = models.ForeignKey(Team.name, on_delete=models.CASCADE, related_name='old_games_player2')
     natija = models.CharField(max_length=10)
     date = models.DateTimeField(auto_now_add=True)
 
