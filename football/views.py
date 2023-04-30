@@ -8,12 +8,22 @@ class LigaViewSet(viewsets.ModelViewSet):
 
 class TeamViewSet(viewsets.ModelViewSet):
     serializer_class = TeamSerializer
-    queryset = Team.objects.all()
+
+    def get_queryset(self):
+        queryset = Team.objects.all()
+        queryset = queryset.order_by('-ochko', '-nisbat', 'tur')
+        return queryset
 
 class NewGameViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = NewGameSerializer
-    queryset = NewGame.objects.all()
+
+    def get_queryset(self):
+        queryset = NewGame.objects.all()
+        return queryset.order_by('-date')
 
 class OldGameViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = OldGameSerializer
-    queryset = OldGame.objects.all()
+
+    def get_queryset(self):
+        queryset = OldGame.objects.all()
+        return queryset.order_by('-date')
